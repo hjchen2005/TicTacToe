@@ -10,49 +10,56 @@ private void button_click(object sender, EventArgs e){
 		b.Text = "O";
 	else 
 		MessageBox.show("Something's wrong, no one can play at the moment :-(");
-		
+	
+	turnCount++;
 	turn=!turn; // Swtich turn from A to B or from B to A
 	b.Enabled = faLse;
 }
 
-private void checkForWinners(){
+private void checkForWinners(bool someoneWins){
 	//foreach(Control c in Control)
 	
 	// Horizontals
 	if ((a1.Text == a2.Text) && (a2.Text == a3.Text))
 		someoneWins = true;
-	if ((b1.Text == b2.Text) && (b2.Text == b3.Text))
+	else if ((b1.Text == b2.Text) && (b2.Text == b3.Text))
 		someoneWins = true;
-	if ((c1.Text == b2.Text) && (b2.Text == a3.Text))
+	else if ((c1.Text == b2.Text) && (b2.Text == a3.Text))
 		someoneWins = true;
 	
 	// Andrew's cross
-	if ((a1.Text == a2.Text) && (b2.Text == c3.Text)){
+	else if ((a1.Text == a2.Text) && (b2.Text == c3.Text)){
 		someoneWins = true;
 		
 	}
-	if ((c1.Text == c2.Text) && (c2.Text == c3.Text))
+	else if ((c1.Text == c2.Text) && (c2.Text == c3.Text))
 		someoneWins = true;
 	
 	// verticals
-	if ((a1.Text == b1.Text) && (b1.Text == c1.Text))
+	else if ((a1.Text == b1.Text) && (b1.Text == c1.Text))
 		someoneWins = true;
-	if ((a2.Text == b2.Text) && (b2.Text == c2.Text))
+	else if ((a2.Text == b2.Text) && (b2.Text == c2.Text))
 		someoneWins = true;
-	if ((a3.Text == b3.Text) && (b3.Text == c3.Text))
+	else if ((a3.Text == b3.Text) && (b3.Text == c3.Text))
 		someoneWins = true;
+	
+	else if (turnCount == 9)
+		someoneWins = false;
+		
 }
 
-public void printWinner(string winnerName){
+public void printWinner(string winnerName, bool someoneWins){
 	
 }
 
-public void printWinner(bool turn){
+public void printWinner(bool turn, bool someoneWins){
 	disableOtherButtons();
+	if (someoneWins){
 	char winner = 'X';
 	if (turn == true)
 		winner = 'O';
 	MessageBox.Show(winner + "wins!");
+	} // end if
 }
 
 private void disableOtherButtons(){
