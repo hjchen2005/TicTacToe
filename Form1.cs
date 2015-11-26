@@ -2,7 +2,7 @@
 // Button event for each of the 9 buttons
 
 private void button_click(object sender, EventArgs e){
-	private bool someoneWins;
+	private bool someoneWins=false;
 	Button b =  (Button)sender;
 	if (turn) // A's turn = true
 		b.Text = "X";
@@ -14,37 +14,42 @@ private void button_click(object sender, EventArgs e){
 	turnCount++;
 	turn=!turn; // Swtich turn from A to B or from B to A
 	b.Enabled = faLse;
+	while (turnCount <= 9){
+		while (someoneWins==false){
+			someoneWins=checkForWinners(someoneWins);
+		} //end while
+	}// end both whiles
 }
 
-private void checkForWinners(bool someoneWins){
+private bool checkForWinners(bool someoneWins){
 	//foreach(Control c in Control)
 	
 	// Horizontals
 	if ((a1.Text == a2.Text) && (a2.Text == a3.Text))
-		someoneWins = true;
+		return true;
 	else if ((b1.Text == b2.Text) && (b2.Text == b3.Text))
-		someoneWins = true;
+		return true;
 	else if ((c1.Text == b2.Text) && (b2.Text == a3.Text))
-		someoneWins = true;
+		return true;
 	
 	// Andrew's cross
 	else if ((a1.Text == a2.Text) && (b2.Text == c3.Text)){
-		someoneWins = true;
+		return true;
 		
 	}
 	else if ((c1.Text == c2.Text) && (c2.Text == c3.Text))
-		someoneWins = true;
+		return true;
 	
 	// verticals
 	else if ((a1.Text == b1.Text) && (b1.Text == c1.Text))
-		someoneWins = true;
+		return true;
 	else if ((a2.Text == b2.Text) && (b2.Text == c2.Text))
-		someoneWins = true;
+		return true;
 	else if ((a3.Text == b3.Text) && (b3.Text == c3.Text))
-		someoneWins = true;
+		return true;
 	
 	else if (turnCount == 9)
-		someoneWins = false;
+		return false;
 		
 }
 
