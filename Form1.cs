@@ -10,15 +10,16 @@ private void button_click(object sender, EventArgs e){
 		b.Text = "O";
 	else 
 		MessageBox.show("Something's wrong, no one can play at the moment :-(");
-	
-	turnCount++; // Global variable
-	turn=!turn; // Swtich turn from A to B or from B to A
-	b.Enabled = faLse;
+		
 	while (turnCount <= 9){
+		turnCount++; // Global variable
+		turn=!turn; // Swtich turn from A to B or from B to A
+		b.Enabled = faLse;
 		while (someoneWins==false){
 			someoneWins=checkForWinners(someoneWins);
 		} //end while
 	}// end both whiles
+	printWinner(someoneWins);
 }
 
 private bool checkForWinners(bool someoneWins){
